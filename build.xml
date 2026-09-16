@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Java Card Utils library" default="build-library" basedir=".">
+
+	<!-- <get src="https://github.com/martinpaljak/ant-javacard/releases/latest/download/ant-javacard.jar" dest="." skipexisting="true"/> -->
+	<taskdef name="javacard" classname="pro.javacard.ant.JavaCard" classpath="ant-javacard.jar"/>
+
+    <description>GSM library</description>
+
+    <property name="jc.sdk"          value="./libraries/jc304_kit" />
+    <property name="package.aid"     value="A0:00:00:00:85:6C:69:62:75:74:69:6C:73" />
+    <property name="package.name"    value="fun.libutils" />
+    <property name="package.version" value="1.0" />
+
+    <target name="build-library">
+        <javacard>
+            <!-- Атрибут verify="false" критически важен для библиотек без Applet.cap -->
+            <cap jckit="${jc.sdk}" 
+                 aid="${package.aid}"
+                 package="${package.name}"
+                 version="${package.version}"
+                 output="dist/${package.name}.cap"
+                 export="dist/"
+                 jar="dist/"
+                 sources="src/"
+                 verify="false">
+                
+                <!-- Тег <applet> ОПУЩЕН, так как это библиотека -->
+                
+                <!-- Если ваша библиотека зависит от других библиотек, раскомментируйте строку ниже: -->
+                <!-- <import jar="libs/another_ext_lib.jar"/> -->
+            </cap>
+        </javacard>
+    </target>
+
+    <target name="clean">
+        <delete dir="dist" />
+    </target>
+
+</project>
