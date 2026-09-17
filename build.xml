@@ -34,6 +34,7 @@
 
     <target name="clean">
         <delete dir="dist" />
+        <mkdir dir="dist" />
     </target>
 
 </project>
