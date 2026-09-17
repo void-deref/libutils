@@ -12,6 +12,7 @@
     <property name="package.version" value="1.0" />
 
     <target name="build-library">
+        <mkdir dir="dist" />
         <javacard>
             <!-- Атрибут verify="false" критически важен для библиотек без Applet.cap -->
             <cap jckit="${jc.sdk}" 
